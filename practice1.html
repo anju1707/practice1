@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Work</title>
+  <meta name="description" content="Portfolio mock page" />
+  <style>
+    :root {
+      --text: #222;
+      --muted: #6b7280; /* gray-500 */
+      --border: #e5e7eb; /* gray-200 */
+      --bg: #ffffff;
+      --accent: #111827; /* gray-900 for buttons */
+      --max-w: 1120px;
+    }
+    html, body { height: 100%; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Meiryo", sans-serif;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; height: auto; display: block; }
+    /* Header */
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 20px; }
+    header {
+      position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,.85);
+      backdrop-filter: saturate(180%) blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .brand { font-weight: 700; letter-spacing: .02em; }
+    nav ul { display: flex; gap: 24px; list-style: none; margin: 0; padding: 0; align-items: center; }
+    .nav a { font-size: 14px; color: #374151; }
+    .nav a:hover { color: #111827; }
+    /* Hero */
+    .hero { width: 100%; height: min(56vw, 520px); display: grid; place-items: center; overflow: hidden; }
+    .hero img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+    /* Sections */
+    section { padding: 80px 0; }
+    h2 { text-align: center; font-size: clamp(20px, 2.2vw + 12px, 28px); margin: 0 0 28px; letter-spacing: .08em; }
+    .lead { color: var(--muted); font-size: 14px; }
+    /* About */
+    .about-body { max-width: 760px; margin: 0 auto; color: #111827; }
+    .about-body p { margin: 0 0 18px; }
+    .about-meta { font-size: 14px; color: #374151; margin: 18px 0 28px; white-space: pre-line; }
+    /* Works */
+    .grid { display: grid; gap: 18px; }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .card { background: #fff; border: 1px solid var(--border); }
+    .card img { aspect-ratio: 4/3; object-fit: cover; }
+    /* News */
+    .news { max-width: 900px; margin: 0 auto; }
+    .news-item { display: grid; grid-template-columns: 120px 1fr; gap: 24px; padding: 16px 0; border-top: 1px solid var(--border); font-size: 14px; }
+    .news-item:last-child { border-bottom: 1px solid var(--border); }
+    .news-date { color: var(--muted); }
+    /* Contact */
+    form { max-width: 920px; margin: 0 auto; }
+    .field { margin-bottom: 14px; }
+    label { display: block; font-size: 12px; letter-spacing: .06em; color: var(--muted); margin-bottom: 6px; }
+    input[type="text"], input[type="email"], textarea {
+      width: 100%; padding: 12px 14px; border: 1px solid var(--border); border-radius: 2px; font: inherit; background: #fff;
+    }
+    textarea { min-height: 180px; resize: vertical; }
+    .btn { display: inline-block; padding: 12px 28px; background: var(--accent); color: #fff; border: none; cursor: pointer; font-weight: 600; letter-spacing: .06em; }
+    .btn:active { transform: translateY(1px); }
+    /* Footer */
+    footer { text-align: center; color: #9ca3af; font-size: 12px; padding: 28px 0; border-top: 1px solid var(--border); }
+    /* Responsive */
+    @media (max-width: 900px) {
+      .grid-3 { grid-template-columns: 1fr 1fr; }
+      .news-item { grid-template-columns: 100px 1fr; }
+    }
+    @media (max-width: 600px) {
+      .nav ul { gap: 16px; }
+      section { padding: 60px 0; }
+      .grid-3 { grid-template-columns: 1fr; }
+      .news-item { grid-template-columns: 1fr; }
+      .news-date { order: 0; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container nav">
+      <div class="brand">My Work</div>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#works">Works</a></li>
+          <li><a href="#news">News</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="https://instagram.com" aria-label="Instagram" target="_blank" rel="noopener noreferrer">&#x1F465;</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <div class="hero" role="img" aria-label="Hero image of a modern building with palm leaves">
+    <img src="https://images.unsplash.com/photo-1533090161767-e6ffed986c88?q=80&w=1600&auto=format&fit=crop" alt="Modern building with palm leaves" />
+  </div>
+
+  <!-- About -->
+  <section id="about" class="container">
+    <h2>About</h2>
+    <div class="about-body">
+      <p>Xxxxx Ashley</p>
+      <div class="about-meta">2th Floor xxxxx Building x-x-x Nishiazabu, Minato-ku, Tokyo 106-0031 Japan
+ tel: 000-0000-0000
+ url: www.xxxxxx.jp
+ mail: xxx@xxxxxx.jp</div>
+      <p>プロフィールテキストテキストテキストテキストテキストテキストテキスト テキストテキストテキストテキストテキストテキストテキストテキスト テキストテキストテキストテキストテキストテキストテキストテキスト テキストテキストテキスト。</p>
+    </div>
+  </section>
+
+  <!-- Works -->
+  <section id="works" class="container">
+    <h2>Works</h2>
+    <div class="grid grid-3">
+      <div class="card"><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80" alt="Work 1"></div>
+      <div class="card"><img src="https://images.unsplash.com/photo-1482192596544-9eb780fc7f66?q=80&w=1200&auto=format&fit=crop" alt="Work 2" /></div>
+      <div class="card"><img src="https://images.unsplash.com/photo-1496302662116-35cc4f36df92?q=80&w=1200&auto=format&fit=crop" alt="Work 3" /></div>
+      <div class="card"><img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=1200&q=80" alt="Work 4"></div>
+      <div class="card"><img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?q=80&w=1200&auto=format&fit=crop" alt="Work 5" /></div>
+      <div class="card"><img src="https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?auto=format&fit=crop&w=1200&q=80" alt="Work 6"></div>
+    </div>
+  </section>
+
+  <!-- News -->
+  <section id="news" class="container">
+    <h2>News</h2>
+    <div class="news">
+      <div class="news-item">
+        <div class="news-date">2020.XX.XX</div>
+        <div class="news-body">デザイン雑誌『ＸＸＸＸＸ Vol.11』に掲載していただきました。</div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">2020.XX.XX</div>
+        <div class="news-body">ＸＸ月ＸＸ日から写真集『ＸＸＸＸＸ』の販売を開始します。</div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">2019.XX.XX</div>
+        <div class="news-body">【イベント開催のお知らせ】テキストテキストテキストテキストテキストテキストテキスト。</div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">2019.XX.XX</div>
+        <div class="news-body">デザイン雑誌『ＸＸＸＸＸ Vol.10』に掲載していただきました。</div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">2019.XX.XX</div>
+        <div class="news-body">【個展開催のお知らせ】テキストテキストテキストテキストテキストテキストテキスト。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="container">
+    <h2>Contact</h2>
+    <form onsubmit="event.preventDefault(); alert('送信はダミーです。バックエンドを繋げてください。');">
+      <div class="field">
+        <label for="name">NAME</label>
+        <input id="name" type="text" placeholder="山田 太郎" required />
+      </div>
+      <div class="field">
+        <label for="email">E-mail</label>
+        <input id="email" type="email" placeholder="taro@example.com" required />
+      </div>
+      <div class="field">
+        <label for="message">MESSAGE</label>
+        <textarea id="message" placeholder="お問い合わせ内容を入力してください"></textarea>
+      </div>
+      <button class="btn" type="submit">送信</button>
+    </form>
+  </section>
+
+  <footer>
+    <div class="container">© 2024 My Work</div>
+  </footer>
+</body>
+</html>

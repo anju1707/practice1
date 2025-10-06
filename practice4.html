@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sneakers — Mock</title>
+    <style>
+        /* ===== Base ===== */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Helvetica, Arial, "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", Meiryo, sans-serif;
+            color: #222;
+            background: #fff;
+            line-height: 1.7
+        }
+
+        img {
+            max-width: 100%;
+            display: block
+        }
+
+        h1,
+        h2 {
+            letter-spacing: .06em
+        }
+
+        .container {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 0 18px
+        }
+
+        .section {
+            padding: 56px 0
+        }
+
+        .title {
+            font-size: 28px;
+            text-align: center;
+            margin: 0 0 22px
+        }
+
+        .muted {
+            color: #777;
+            font-size: 12px
+        }
+
+        /* ===== Hero ===== */
+        .hero {
+            position: relative
+        }
+
+        .hero img {
+            width: 100%;
+            height: 46vw;
+            min-height: 280px;
+            max-height: 520px;
+            object-fit: cover;
+            filter: saturate(.9)
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, .15), rgba(0, 0, 0, 0) 40%)
+        }
+
+        /* ===== PICK UP ===== */
+        .pickup-strip {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap
+        }
+
+        .pickup-item {
+            width: 112px;
+            height: 78px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, .08);
+            transition: transform .25s ease
+        }
+
+        .pickup-item:hover {
+            transform: translateY(-4px)
+        }
+
+        .pickup-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover
+        }
+
+        /* ===== Cards ===== */
+        .grid {
+            display: grid;
+            gap: 22px
+        }
+
+        .grid.cols-2 {
+            grid-template-columns: repeat(2, minmax(0, 1fr))
+        }
+
+        .grid.cols-3 {
+            grid-template-columns: repeat(3, minmax(0, 1fr))
+        }
+
+        @media (max-width:900px) {
+            .grid.cols-3 {
+                grid-template-columns: repeat(2, minmax(0, 1fr))
+            }
+        }
+
+        @media (max-width:640px) {
+
+            .grid.cols-2,
+            .grid.cols-3 {
+                grid-template-columns: 1fr
+            }
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .08)
+        }
+
+        .card-media {
+            aspect-ratio: 4/3;
+            overflow: hidden
+        }
+
+        .card-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .5s ease
+        }
+
+        .card:hover .card-media img {
+            transform: scale(1.04)
+        }
+
+        .card-body {
+            padding: 14px 16px 18px
+        }
+
+        .card .category {
+            font-size: 11px;
+            color: #8a8a8a;
+            margin: 2px 0 6px
+        }
+
+        .card .text {
+            font-size: 13px;
+            color: #333
+        }
+
+        /* ===== Section: Sneakers heading line ===== */
+        .heading-line {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 18px
+        }
+
+        .heading-line h2 {
+            margin: 0
+        }
+
+        .menu-lines {
+            width: 18px;
+            height: 12px;
+            display: grid;
+            gap: 3px
+        }
+
+        .menu-lines span {
+            display: block;
+            background: #444;
+            height: 2px;
+            border-radius: 2px
+        }
+
+        /* ===== Contact ===== */
+        .contact {
+            background: #0f0f0f;
+            color: #f5f5f5
+        }
+
+        .contact .title {
+            color: #fff
+        }
+
+        .contact-wrap {
+            display: grid;
+            grid-template-columns: 1.2fr .8fr;
+            gap: 26px
+        }
+
+        @media (max-width:820px) {
+            .contact-wrap {
+                grid-template-columns: 1fr
+            }
+        }
+
+        .contact p {
+            margin: .35rem 0;
+            color: #c9c9c9
+        }
+
+        .form label {
+            display: block;
+            font-size: 12px;
+            margin: .75rem 0 .25rem;
+            color: #d7d7d7
+        }
+
+        .form input,
+        .form textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border-radius: 6px;
+            border: 1px solid #2a2a2a;
+            background: #151515;
+            color: #fff
+        }
+
+        .form textarea {
+            min-height: 120px;
+            resize: vertical
+        }
+
+        .btn {
+            margin-top: 10px;
+            padding: 10px 16px;
+            border: 0;
+            border-radius: 8px;
+            background: #ffffff;
+            color: #111;
+            font-weight: 600;
+            cursor: pointer
+        }
+
+        .btn:active {
+            transform: translateY(1px)
+        }
+
+        /* small footer note */
+        .copyright {
+            font-size: 12px;
+            color: #999;
+            text-align: center;
+            padding: 24px 0
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Hero -->
+    <header class="hero">
+        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1920&auto=format&fit=crop"
+            alt="Hero" />
+    </header>
+
+    <!-- PICK UP -->
+    <section class="section">
+        <div class="container">
+            <h2 class="title">PICK UP</h2>
+            <div class="pickup-strip" aria-label="ピックアップ画像">
+                <a class="pickup-item" href="#"><img
+                        src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=600&auto=format&fit=crop"
+                        alt="pickup" /></a>
+                <a class="pickup-item" href="#"><img
+                        src="https://images.unsplash.com/photo-1483721310020-03333e577078?q=80&w=600&auto=format&fit=crop"
+                        alt="pickup" /></a>
+                <a class="pickup-item" href="#"><img
+                        src="https://images.unsplash.com/photo-1519744792095-2f2205e87b6f?q=80&w=600&auto=format&fit=crop"
+                        alt="pickup" /></a>
+                <a class="pickup-item" href="#"><img
+                        src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=600&auto=format&fit=crop"
+                        alt="pickup" /></a>
+                <a class="pickup-item" href="#"><img
+                        src="https://images.unsplash.com/photo-1519744792095-2f2205e87b6f?q=80&w=600&auto=format&fit=crop"
+                        alt="pickup" /></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURE -->
+    <section class="section">
+        <div class="container">
+            <h2 class="title">FEATURE</h2>
+            <div class="grid cols-2">
+                <article class="card">
+                    <div class="card-media">
+                        <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?q=80&w=1200&auto=format&fit=crop"
+                            alt="Feature 1" />
+                    </div>
+                    <div class="card-body">
+                        <div class="category">category</div>
+                        <div class="text">テキストテキストテキストテキストテキストテキストテキストテキスト</div>
+                    </div>
+                </article>
+                <article class="card">
+                    <div class="card-media">
+                        <img src="https://images.unsplash.com/photo-1608231387042-66d1773070a5?q=80&w=1200&auto=format&fit=crop"
+                            alt="Feature 2" />
+                    </div>
+                    <div class="card-body">
+                        <div class="category">category</div>
+                        <div class="text">テキストテキストテキストテキストテキストテキストテキストテキスト</div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sneakers -->
+    <section class="section">
+        <div class="container">
+            <div class="heading-line">
+                <h2 class="title" style="margin-bottom:10px">Sneakers</h2>
+                <div class="menu-lines" aria-hidden="true"><span></span><span></span><span></span></div>
+            </div>
+
+            <div class="grid cols-3">
+                <!-- 1 -->
+                <article class="card">
+                    <div class="card-media"><img
+                            src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?q=80&w=1200&auto=format&fit=crop"
+                            alt="Sneaker" /></div>
+                    <div class="card-body">
+                        <div class="category">category</div>
+                        <div class="text">テキストテキストテキストテキストテキストテキスト</div>
+                    </div>
+                </article>
+                <!-- 2 -->
+                <article class="card">
+                    <div class="card-media"><img
+                            src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop"
+                            alt="Sneaker" /></div>
+                    <div class="card-body">
+                        <div class="category">category</div>
+                        <div class="text">テキストテキストテキストテキストテキストテキスト</div>
+                    </div>
+                </article>
+                <!-- 3 -->
+                <article class="card">
+                    <div class="card-media"><img
+                            src="https://images.unsplash.com/photo-1519744792095-2f2205e87b6f?q=80&w=1200&auto=format&fit=crop"
+                            alt="Sneaker" /></div>
+                    <div class="card-body">
+                        <div class="category">category</div>
+                        <div class="text">テキストテキストテキストテキストテキストテキスト</div>
+                    </div>
+                </article>
+                <!-- 4 -->
+                <article class="card">
+                    <div class="card-media"><img
+                            src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?q=80&w=1200&auto=format&fit=crop"
+                            alt="Sneaker" /></div>
+                    <div class="card-body">
+                        <div class="category">category</div>
+                        <div class="text">テキストテキストテキストテキストテキストテキスト</div>
+                    </div>
+                </article>
+                <!-- 5 -->
+                <!-- 5 -->
+                <article class="card">
+                    <div class="card-media">
+                        <img src="https://images.unsplash.com/photo-1519744792095-2f2205e87b6f?q=80&w=1200&auto=format&fit=crop"
+                            alt="Sneaker" loading="lazy" />
+                    </div>
+                    <div class="card-body">
+                        <div class="category">category</div>
+                        <div class="text">テキストテキストテキストテキストテキストテキスト</div>
+                    </div>
+                </article>
+
+                <!-- 6 -->
+                <article class="card">
+                    <div class="card-media"><img
+                            src="https://images.unsplash.com/photo-1517649763962-0c623066013b?q=80&w=1200&auto=format&fit=crop"
+                            alt="Sneaker" /></div>
+                    <div class="card-body">
+                        <div class="category">category</div>
+                        <div class="text">テキストテキストテキストテキストテキストテキスト</div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section contact" id="contact">
+        <div class="container">
+            <h2 class="title">CONTACT</h2>
+            <div class="contact-wrap">
+                <div>
+                    <p>テキストテキストテキストテキストテキストテキストテキストテキスト。</p>
+                    <p>テキストテキストテキストテキストテキストテキストテキスト。</p>
+                    <p class="muted">※ このフォームはデモです。送信はされません。</p>
+                </div>
+                <form class="form" onsubmit="event.preventDefault(); alert('送信テスト：ありがとうございます！');">
+                    <label for="name">Name:</label>
+                    <input id="name" type="text" required />
+                    <label for="mail">Mail:</label>
+                    <input id="mail" type="email" required />
+                    <label for="msg">Message:</label>
+                    <textarea id="msg"></textarea>
+                    <button class="btn" type="submit">SEND</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <div class="copyright">© 2025 Sneakers Mock</div>
+</body>
+
+</html>
